@@ -1,5 +1,4 @@
 import math
-import sys
 
 
 def solve_quadratic(a: float, b: float, c: float) -> list:
