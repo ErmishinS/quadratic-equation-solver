@@ -34,13 +34,19 @@ def convert_str_to_float(value: str):
         result = float(value)
         return result
     except ValueError:
-        raise ValueError(f"Error. Expected a valid real number, got {value} instead")
+        raise ValueError(
+            f"Error. Expected a valid real number, got {value} instead")
 
 
 def get_coefficient_value(coeff_name: str) -> float:
     while True:
-        value = input(coeff_name)
-        return convert_str_to_float(value)
+        try:
+            value = input(coeff_name)
+            result = convert_str_to_float(value)
+            return result
+        except ValueError as err:
+            print(f"{err}")
+            continue
 
 
 def start_interactive_mode():
