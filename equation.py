@@ -1,4 +1,5 @@
 import math
+import sys
 
 
 def solve_quadratic(a: float, b: float, c: float) -> list:
@@ -49,8 +50,34 @@ def interactive_mode():
     print_result(roots)
 
 
+def file_mode(filepath: str):
+    try:
+        with open(filepath, "r") as f:
+            content = f.read().strip()
+        parts = content.split()
+        if len(parts) != 3:
+            raise ValueError("invalid file format")
+        a, b, c = map(float, parts)
+        if a == 0:
+            print("Error. a cannot be 0")
+            sys.exit(1)
+        print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
+        roots = solve_quadratic(a, b, c)
+
+        print_result(roots)
+    except FileNotFoundError:
+        print(f"file {filepath} does not exist")
+        sys.exit(1)
+    except ValueError as err:
+        print(f"{err}")
+        sys.exit(1)
+
+
 def main():
-    interactive_mode()
+    if len(sys.argv) == 1:
+        interactive_mode()
+    else:
+        file_mode(sys.argv[1])
     # (5, 3, -26) – "-2.6 and 2.0"
     # (1, 2, 3) – "There are 0 roots"
     # (1, 2, 1) – "-1.0"
