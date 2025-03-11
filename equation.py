@@ -1,6 +1,7 @@
 import math
 
-def solve_quadratic(a, b, c):
+
+def solve_quadratic(a: float, b: float, c: float) -> list:
     discriminant = b**2 - 4 * a * c
     if discriminant > 0:
         x1 = (-b - math.sqrt(discriminant)) / (2 * a)
@@ -11,8 +12,9 @@ def solve_quadratic(a, b, c):
         return [x]
     else:
         return []
-    
-def print_result(roots):
+
+
+def print_result(roots: list):
     if len(roots) == 0:
         print("There are 0 roots")
     elif len(roots) == 1:
@@ -22,15 +24,17 @@ def print_result(roots):
         print("There are 2 roots")
         print(f"x1 = {roots[0]}")
         print(f"x2 = {roots[1]}")
-    
-def get_float(float_num):
+
+
+def get_float(coeff_name: str) -> float:
     while True:
-        value = input(float_num)
+        value = input(coeff_name)
         try:
             result = float(value)
             return result
         except ValueError:
             print(f"Error. Expected a valid real number, got {value} instead")
+
 
 def interactive_mode():
     a = get_float("a = ")
@@ -39,16 +43,18 @@ def interactive_mode():
         a = get_float("a = ")
     b = get_float("b = ")
     c = get_float("c = ")
-    
+
     print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
     roots = solve_quadratic(a, b, c)
     print_result(roots)
+
 
 def main():
     interactive_mode()
     # (5, 3, -26) – "-2.6 and 2.0"
     # (1, 2, 3) – "There are 0 roots"
     # (1, 2, 1) – "-1.0"
+
 
 if __name__ == "__main__":
     main()
