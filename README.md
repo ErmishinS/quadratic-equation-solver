@@ -1,7 +1,7 @@
 # quadratic-equation-solver 
 
 ## Description  
-Quadratic Equation Solver is a command-line application that solves quadratic equations of the form:  
+**Quadratic Equation Solver** is a command-line application that solves quadratic equations of the form:  
 
 
 ### **ax^2 + bx + c = 0**
@@ -9,8 +9,8 @@ Quadratic Equation Solver is a command-line application that solves quadratic eq
 
 where a, b, and c are real numbers, and a != 0.  
 The program supports two modes:  
-- interactive mode – users input coefficients manually.  
-- non-interactive (file) mode – coefficients are read from a file.  
+- **interactive mode** – users input coefficients manually.  
+- **non-interactive (file) mode** – coefficients are read from a file.  
 
 ---
 
@@ -40,7 +40,6 @@ python3 equation.py path/to/input_file.txt
 
 ### File format for non-interactive (file) mode
 The input file must contain three numbers (coefficients a, b, and c) separated by a space, followed by a newline (\n):
-Correct file example
 ```
 5 3 -26
 ```
