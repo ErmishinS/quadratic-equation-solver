@@ -29,14 +29,18 @@ def print_result(roots: list):
         print(f"x2 = {roots[1]}")
 
 
+def convert_str_to_float(value: str):
+    try:
+        result = float(value)
+        return result
+    except ValueError:
+        raise ValueError(f"Error. Expected a valid real number, got {value} instead")
+
+
 def get_coefficient_value(coeff_name: str) -> float:
     while True:
         value = input(coeff_name)
-        try:
-            result = float(value)
-            return result
-        except ValueError:
-            print(f"Error. Expected a valid real number, got {value} instead")
+        return convert_str_to_float(value)
 
 
 def start_interactive_mode():
@@ -58,10 +62,12 @@ def start_file_mode(filepath: str):
         parts = content.split()
         if len(parts) != 3:
             raise ValueError("invalid file format")
-        a, b, c = map(float, parts)
+        a = convert_str_to_float(parts[0])
         if a == 0:
             print("Error. a cannot be 0")
             sys.exit(1)
+        b = convert_str_to_float(parts[1])
+        c = convert_str_to_float(parts[2])
         roots = solve_quadratic(a, b, c)
 
         print_result(roots)
