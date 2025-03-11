@@ -3,6 +3,8 @@ import sys
 
 
 def solve_quadratic(a: float, b: float, c: float) -> list:
+    print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
+
     discriminant = b**2 - 4 * a * c
     if discriminant > 0:
         x1 = (-b - math.sqrt(discriminant)) / (2 * a)
@@ -27,7 +29,7 @@ def print_result(roots: list):
         print(f"x2 = {roots[1]}")
 
 
-def get_float(coeff_name: str) -> float:
+def get_coefficient_value(coeff_name: str) -> float:
     while True:
         value = input(coeff_name)
         try:
@@ -37,20 +39,19 @@ def get_float(coeff_name: str) -> float:
             print(f"Error. Expected a valid real number, got {value} instead")
 
 
-def interactive_mode():
-    a = get_float("a = ")
+def start_interactive_mode():
+    a = get_coefficient_value("a = ")
     while a == 0:
         print("Error. a cannot be 0")
-        a = get_float("a = ")
-    b = get_float("b = ")
-    c = get_float("c = ")
+        a = get_coefficient_value("a = ")
+    b = get_coefficient_value("b = ")
+    c = get_coefficient_value("c = ")
 
-    print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
     roots = solve_quadratic(a, b, c)
     print_result(roots)
 
 
-def file_mode(filepath: str):
+def start_file_mode(filepath: str):
     try:
         with open(filepath, "r") as f:
             content = f.read().strip()
@@ -61,7 +62,6 @@ def file_mode(filepath: str):
         if a == 0:
             print("Error. a cannot be 0")
             sys.exit(1)
-        print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
         roots = solve_quadratic(a, b, c)
 
         print_result(roots)
@@ -75,12 +75,9 @@ def file_mode(filepath: str):
 
 def main():
     if len(sys.argv) == 1:
-        interactive_mode()
+        start_interactive_mode()
     else:
-        file_mode(sys.argv[1])
-    # (5, 3, -26) – "-2.6 and 2.0"
-    # (1, 2, 3) – "There are 0 roots"
-    # (1, 2, 1) – "-1.0"
+        start_file_mode(sys.argv[1])
 
 
 if __name__ == "__main__":
